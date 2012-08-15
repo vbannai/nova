@@ -979,12 +979,14 @@ class InstanceTypeCommands(object):
     @args('--swap', dest='swap', metavar='<swap>', help='Swap')
     @args('--rxtx_factor', dest='rxtx_factor', metavar='<rxtx_factor>',
             help='rxtx_factor')
-    def create(self, name, memory, vcpus, root_gb, ephemeral_gb, flavorid,
+    @args('--disk_qos', dest='disk_qos', metavar='<disk_qos>',
+            help='Disk QoS')
+    def create(self, name, memory, vcpus, root_gb, ephemeral_gb, flavorid, disk_qos,
                swap=0, rxtx_factor=1):
         """Creates instance types / flavors"""
         try:
             instance_types.create(name, memory, vcpus, root_gb,
-                                  ephemeral_gb, flavorid, swap, rxtx_factor)
+                                  ephemeral_gb, flavorid, disk_qos, swap, rxtx_factor)
         except exception.InvalidInput, e:
             print "Must supply valid parameters to create instance_type"
             print e

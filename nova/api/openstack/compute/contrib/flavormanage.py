@@ -65,11 +65,12 @@ class FlavorManageController(wsgi.Controller):
         ephemeral_gb = vals.get('OS-FLV-EXT-DATA:ephemeral')
         swap = vals.get('swap')
         rxtx_factor = vals.get('rxtx_factor')
+        disk_qos = vals.get('disk_qos')
 
         try:
             flavor = instance_types.create(name, memory_mb, vcpus,
                                            root_gb, ephemeral_gb, flavorid,
-                                           swap, rxtx_factor)
+                                           disk_qos, swap, rxtx_factor)
         except exception.InstanceTypeExists as err:
             raise webob.exc.HTTPConflict(explanation=str(err))
 

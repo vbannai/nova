@@ -34,7 +34,7 @@ LOG = logging.getLogger(__name__)
 INVALID_NAME_REGEX = re.compile("[^\w\.\- ]")
 
 
-def create(name, memory, vcpus, root_gb, ephemeral_gb, flavorid, swap=None,
+def create(name, memory, vcpus, root_gb, ephemeral_gb, flavorid, disk_qos, swap=None,
            rxtx_factor=None):
     """Creates instance types."""
 
@@ -50,7 +50,10 @@ def create(name, memory, vcpus, root_gb, ephemeral_gb, flavorid, swap=None,
         'ephemeral_gb': ephemeral_gb,
         'swap': swap,
         'rxtx_factor': rxtx_factor,
+        'disk_qos': disk_qos,
     }
+
+    LOG.info(_('====>Instance type %s, Disk_Qos is %d') % (name, disk_qos))
 
     # ensure name does not contain any special characters
     invalid_name = INVALID_NAME_REGEX.search(name)

@@ -46,6 +46,7 @@ class ViewBuilder(common.ViewBuilder):
                 "links": self._get_links(request,
                                          flavor["flavorid"],
                                          self._collection_name),
+                "disk_qos": flavor.get("disk_qos") or "",
             },
         }
 

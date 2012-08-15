@@ -320,6 +320,7 @@ class InstanceTypes(BASE, NovaBase):
     rxtx_factor = Column(Float, nullable=False, default=1)
     vcpu_weight = Column(Integer, nullable=True)
     disabled = Column(Boolean, default=False)
+    disk_qos = Column(Integer, default=100)
 
     instances = relationship(Instance,
                            backref=backref('instance_type', uselist=False),
